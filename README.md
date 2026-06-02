@@ -1,20 +1,23 @@
-Link to whole_quantized_model.pt:
-https://iiitaphyd-my.sharepoint.com/:u:/g/personal/soham_ghosh_students_iiit_ac_in/Ebeby2cWnx5NvJbVj24oNP0BOyhCQyTmFdRwvsOZb4hRMw?e=UxOI9M
+Link to soft_prompt_model.pt: https://iiitaphyd-my.sharepoint.com/:u:/g/personal/soham_ghosh_students_iiit_ac_in/EWh7gxoFWTpHmHJQkkXE9TABMgrTZxBp9YFttGXxxlpH1Q?e=NhRL5e
 
-Link to selectively_quantized_model:
-https://iiitaphyd-my.sharepoint.com/:u:/g/personal/soham_ghosh_students_iiit_ac_in/EUBHJVHMSq5MvNNMx53zVSABNczH1OutuuVygtyy5Zzauw?e=qIWDpq
+For restoring the above trained model, run the following code:
+model = GPT2LMHeadModel.from_pretrained("gpt2")
+soft_prompt_model = SoftPromptTuning(model)
+soft_prompt_model.load_state_dict(torch.load("soft_prompt_model.pt"))
 
-Link to bnb_8bit_quantized_model.pt:
-https://iiitaphyd-my.sharepoint.com/:u:/g/personal/soham_ghosh_students_iiit_ac_in/ER77cX-oDIpGnsqfFKcvbewBaYuTTWQdaznGhrYSSiqd3g?e=DPYrpp
+Link to lora_finetuned_model.pt: https://iiitaphyd-my.sharepoint.com/:u:/g/personal/soham_ghosh_students_iiit_ac_in/ERTWW9y5n1xPmRRO4JZs6QQBHW4fDHcvjHw2G73tfcs4xg?e=vv9bdu
 
-Link to bnb_4bit_quantized_model.pt:
-https://iiitaphyd-my.sharepoint.com/:u:/g/personal/soham_ghosh_students_iiit_ac_in/EaW-g-1ceVlDpuxK4XrHqp0BHxWTByWiMPI-RB6PMmI6hQ?e=6Lmlqb
+For restoring the above trained model, run the following code:
+model = GPT2LMHeadModel.from_pretrained("gpt2")
+lora_model = get_peft_model(model, lora_config)
+lora_model.load_state_dict(torch.load("lora_finetuned_model.pt"))
 
-Link to bnb_nf4_quantized_model.pt:
-https://iiitaphyd-my.sharepoint.com/:u:/g/personal/soham_ghosh_students_iiit_ac_in/EfC4QAF73y9Kmv5ux0BRsLEB_YSFsTuf0thzaGISLQG1Tg?e=RtxlMp
+Link to fintuned_model.pt: https://iiitaphyd-my.sharepoint.com/:u:/g/personal/soham_ghosh_students_iiit_ac_in/EXoaONKz_R5CpO-suSWvno8Bp75edRFa7n6mZN1HPSe7GA?e=IRpMJZ
 
-For loading any of the above quantized models:
-model = AutoModelForCausalLM.from_pretrained("gpt2")
-model.load_state_dict(torch.load(<quantized_model_path>))
+For restoring the above trained model, run the following code:
+model = GPT2LMHeadModel.from_pretrained("gpt2")
+model.load_state_dict(torch.load("finetuned_model.pt"))
 
 The necessary libraries and packages must be installed before running the python files
+
+The number of epochs has been taken a low value due to GPU quota constraints on Kaggle
